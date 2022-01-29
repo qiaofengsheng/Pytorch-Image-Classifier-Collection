@@ -5,16 +5,17 @@
  @File     :optim.py
  @Software :PyCharm
  '''
+
 from torch import optim
 
 
-class Optimizer():
+class Optimizer:
     def __init__(self, net, opt_type='Adam'):
         super(Optimizer, self).__init__()
         self.opt = optim.Adam(net.parameters())
         if opt_type == 'SGD':
             self.opt = optim.SGD(net.parameters(), lr=0.01)
-        elif opt_type == 'AdamW':
+        elif opt_type == 'ASGD':
             self.opt = optim.ASGD(net.parameters())
         elif opt_type == 'Adam':
             self.opt = optim.Adam(net.parameters())
