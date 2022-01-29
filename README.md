@@ -68,6 +68,6 @@ Pytorch+opencv
 
 ​	B站地址：https://space.bilibili.com/241747799
 
-​	github地址：
+​	github地址：https://github.com/qiaofengsheng/Pytorch-Image-Classifier-Collection.git
 
-​	gitee地址：
+​	gitee地址：https://gitee.com/qiaofengsheng/pytorch-image-classifier-collection.git
