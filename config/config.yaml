@@ -1,0 +1,14 @@
+data_dir : "./data/"
+image_size : 128
+net_type : "mobilenetv3_small_075"  # tf_efficientnet_b4_ns/resnest101/seresnext101
+pretrained: True
+batch_size : 8
+init_lr : 0.01
+opt : 'SGD'
+class_names : ['dog','cat'   ]
+epochs : 15
+loss_type : "ce_loss"  # ce_loss, ce_smothing_loss, focal_loss, bce_loss(多标签，待支持), mlsm_loss(多标签，待支持)
+model_dir : "./mobilenetv3_small_075/weight/"
+log_dir : "./mobilenetv3_small_075/logs/"
+CUDA_VISIBLE_DEVICES : "0"   # 多GPU训练："0,1,2,3"
+eval : "best"                  # "best", "final"
