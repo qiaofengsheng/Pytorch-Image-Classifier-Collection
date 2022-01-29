@@ -47,19 +47,45 @@ Pytorch+opencv
 
 #### 使用说明
 
-1. 模型训练
+1. 配置文件config/config.yaml
 
    ```
-   第一次训练
+   data_dir: "./data/"  #数据集存放地址
+   train_rate: 0.8   #数据集划分，训练集比例
+   image_size: 128   #输入网络图像大小
+   net_type: "shufflenet_v2_x1_0"
+   pretrained: True  #是否添加预训练权重
+   batch_size: 4   #批次
+   init_lr: 0.01   #初始学习率
+   optimizer: 'Adam' #优化器 
+   class_names: [ 'cat','dog' ]  #你的类别名称，必须和data文件夹下的类别文件名一样
+   epochs: 10  #训练总轮次
+   loss_type: "mse"  # mse / l1 / smooth_l1 / cross_entropy   #损失函数
+   model_dir: "./shufflenet_v2_x1_0/weight/"   #权重存放地址
+   log_dir: "./shufflenet_v2_x1_0/logs/"    # tensorboard可视化文件存放地址
+   ```
+
+2. 模型训练
+
+   ```
+   # 第一次训练
    python train.py
-   接着自己未训练完成的模型继续训练
+   
+   # 接着自己未训练完成的模型继续训练
    python train.py --weights_path 模型保存路径
    ```
-
-2. 模型推理
+   
+3. 模型推理
 
    ```
-   python infer.py
+   # 检测图片
+   python infer.py image --image_path 图片地址
+   
+   # 检测视频
+   python infer.py video --video_path 图片地址
+   
+   # 检测摄像头
+   python infer.pu camera --camera_id 摄像头id
    ```
 
 #### 参与贡献

@@ -82,7 +82,8 @@ class Train:
                         if self.config['loss_type'] == 'cross_entropy':
                             test_loss = self.loss_fun(out, image_label)
                         else:
-                            test_loss = self.loss_fun(out, utils.label_one_hot(image_label).type(torch.FloatTensor).to(self.device))
+                            test_loss = self.loss_fun(out, utils.label_one_hot(image_label).type(torch.FloatTensor).to(
+                                self.device))
                         out = torch.argmax(out, dim=1)
                         test_acc = torch.mean(torch.eq(out, image_label).float()).item()
                         acc += test_acc
