@@ -87,6 +87,27 @@ Pytorch+opencv
    # 检测摄像头
    python infer.pu camera --camera_id 摄像头id
    ```
+   
+4. 部署
+
+   1. onnx打包部署
+
+      ```
+      # onnx打包
+      python pack_tools/pytorch_to_onnx.py --config_path 配置文件地址 --weights_path 模型权重存放地址
+      
+      # onnx推理部署
+      # 检测图片
+      python pack_tools/pytorch_onnx_infer.py image --config_path 配置文件地址 --onnx_path 打包完成的onnx包地址 --image_path 图片地址
+      
+      # 检测视频
+      python pack_tools/pytorch_onnx_infer.py video --config_path 配置文件地址 --onnx_path 打包完成的onnx包地址 --video_path 图片地址
+      
+      # 检测摄像头
+      python pack_tools/pytorch_onnx_infer.py camera --config_path 配置文件地址 --onnx_path 打包完成的onnx包地址 --camera_id 摄像头id，默认为0
+      ```
+
+      
 
 #### 参与贡献
 

@@ -70,7 +70,7 @@ class ModelInfer:
                 out = self.net(image_data)
                 out = torch.argmax(out)
                 result = self.config['class_names'][int(out)]
-                cv2.putText(frame, result, (50,50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), thickness=2)
+                cv2.putText(frame, result, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), thickness=2)
                 cv2.imshow('frame', frame)
                 if cv2.waitKey(24) & 0XFF == ord('q'):
                     break
@@ -81,7 +81,7 @@ class ModelInfer:
         cap = cv2.VideoCapture(camera_id)
         while True:
             _, frame = cap.read()
-            h,w,c=frame.shape
+            h, w, c = frame.shape
             if _:
                 image_data = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 image_data = Image.fromarray(image_data)
@@ -91,7 +91,7 @@ class ModelInfer:
                 out = self.net(image_data)
                 out = torch.argmax(out)
                 result = self.config['class_names'][int(out)]
-                cv2.putText(frame, result, (50,50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), thickness=2)
+                cv2.putText(frame, result, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), thickness=2)
                 cv2.imshow('frame', frame)
                 if cv2.waitKey(24) & 0XFF == ord('q'):
                     break

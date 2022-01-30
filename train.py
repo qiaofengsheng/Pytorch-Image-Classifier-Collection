@@ -49,7 +49,6 @@ class Train:
             else:
                 print('no loading model weights')
         temp_acc = 0
-        train_index, test_index = 0, 0
         for epoch in range(1, self.config['epochs'] + 1):
             self.net.train()
             with tqdm.tqdm(self.train_data_loader) as t1:
