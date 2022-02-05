@@ -6,6 +6,7 @@ net_type: "shufflenet_v2_x1_0"
 #  densenet121,densenet161,densenet169,densenet201,vgg11,vgg13,vgg13_bn,vgg19,vgg19_bn,vgg16,vgg16_bn,inception_v3,
 #  mobilenet_v2,mobilenet_v3_small,mobilenet_v3_large,shufflenet_v2_x0_5,shufflenet_v2_x1_0,shufflenet_v2_x1_5,
 #  shufflenet_v2_x2_0,alexnet,googlenet,mnasnet0_5,mnasnet1_0,mnasnet1_3,mnasnet0_75,squeezenet1_0,squeezenet1_1]
+# efficientnet-b0 ... efficientnet-b7
 pretrained: True  #是否添加预训练权重
 batch_size: 4   #批次
 init_lr: 0.01   #初始学习率

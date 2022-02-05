@@ -9,7 +9,7 @@
 import torch
 from torchvision import models
 from torch import nn
-
+from efficientnet_pytorch import EfficientNet
 
 class ClassifierNet(nn.Module):
     def __init__(self, net_type='resnet18', num_classes=10, pretrained=False):
@@ -57,8 +57,14 @@ class ClassifierNet(nn.Module):
         if net_type == 'mnasnet0_75': self.layer = nn.Sequential(models.mnasnet0_75(pretrained=pretrained), )
         if net_type == 'squeezenet1_0': self.layer = nn.Sequential(models.squeezenet1_0(pretrained=pretrained), )
         if net_type == 'squeezenet1_1': self.layer = nn.Sequential(models.squeezenet1_1(pretrained=pretrained), )
-
+        if net_type in ['efficientnet-b0','efficientnet-b1','efficientnet-b2','efficientnet-b3','efficientnet-b4','efficientnet-b5','efficientnet-b6']:
+            if pretrained:
+                self.layer=nn.Sequential(EfficientNet.from_pretrained(net_type))
+            else:
+                self.layer=nn.Sequential(EfficientNet.from_name(net_type))
         self.out = nn.Linear(1000, num_classes)
 
     def forward(self, x):
         return self.out(self.layer(x))
+
+
