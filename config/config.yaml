@@ -1,18 +1,18 @@
 data_dir: "./data/"  #数据集存放地址
 train_rate: 0.8   #数据集划分，训练集比例
 image_size: 128   #输入网络图像大小
-net_type: "resnet18"
+net_type: "efficientnet-b0"
 #支持模型[resnet18,resnet34,resnet50,resnet101,resnet152,resnext101_32x8d,resnext50_32x4d,wide_resnet50_2,wide_resnet101_2,
 #  densenet121,densenet161,densenet169,densenet201,vgg11,vgg13,vgg13_bn,vgg19,vgg19_bn,vgg16,vgg16_bn,inception_v3,
 #  mobilenet_v2,mobilenet_v3_small,mobilenet_v3_large,shufflenet_v2_x0_5,shufflenet_v2_x1_0,shufflenet_v2_x1_5,
 #  shufflenet_v2_x2_0,alexnet,googlenet,mnasnet0_5,mnasnet1_0,mnasnet1_3,mnasnet0_75,squeezenet1_0,squeezenet1_1]
 # efficientnet-b0 ... efficientnet-b7
 pretrained: False  #是否添加预训练权重
-batch_size: 2   #批次
+batch_size: 50   #批次
 init_lr: 0.01   #初始学习率
 optimizer: 'Adam' #优化器 [SGD,ASGD,Adam,AdamW,Adamax,Adagrad,Adadelta,SparseAdam,LBFGS,Rprop,RMSprop]
 class_names: [ 'cat','dog' ]  #你的类别名称，必须和data文件夹下的类别文件名一样
-epochs: 50   #训练总轮次
+epochs: 15   #训练总轮次
 loss_type: "cross_entropy"  # mse / l1 / smooth_l1 / cross_entropy   #损失函数
-model_dir: "./resnet18/weight/"   #权重存放地址
-log_dir: "./resnet18/logs/"    # tensorboard可视化文件存放地址
+model_dir: "./efficientnet-b0/weight/"   #权重存放地址
+log_dir: "./efficientnet-b0/logs/"    # tensorboard可视化文件存放地址

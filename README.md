@@ -108,9 +108,27 @@ Pytorch+opencv
       python pack_tools/pytorch_onnx_infer.py camera --config_path 配置文件地址 --onnx_path 打包完成的onnx包地址 --camera_id 摄像头id，默认为0
       ```
 
-      
+5. 模型剪枝、量化压缩加速
 
-#### 参与贡献
+   1. 模型剪枝微调
+
+      ```
+      # 模型剪枝微调
+      python prune_model/pruning_model.py --weight_path 已训练好的模型权重地址 --prune_type 修剪模型的方式，支持：l1filter,l2filter,fpgm --sparsity 模型稀疏化比例 --finetune_epoches 微调模型的轮次数 --dummy_input 输入模型的形状，例如：(10,3,128,128)
+      
+      # onnx推理部署
+      # 检测图片
+      python infer_prune_model.py image --prune_weights_path 剪枝后的模型权重路径  --image_path 图片地址
+      
+      # 检测视频
+      python infer_prune_model.py video --prune_weights_path 剪枝后的模型权重路径  --video_path 图片地址
+      
+      # 检测摄像头
+      python infer_prune_model.py camera --prune_weights_path 剪枝后的模型权重路径  --camera_id 摄像头id，默认为0
+      ```
+
+
+参与贡献
 
 ​	作者：qiaofengsheng
 

@@ -69,18 +69,19 @@ def evaluator(model, test_loader, criterion, epoch, device):
     index = 0
     test_loss = 0
     acc = 0
-    model.eval()
-    for image_data, target in test_loader:
-        image_data, target = image_data.to(device), target.to(device)
-        output = model(image_data)
-        test_loss += criterion(output, target)
-        pred = output.argmax(dim=1)
-        acc += torch.mean(torch.eq(pred, target).float()).item()
-        index += 1
-    test_loss /= index
-    acc /= index
-    print(f'第{epoch}轮--Average test_loss : {test_loss} -- Average Accuracy : {acc}')
-    return acc
+    with torch.no_grad():
+        model.eval()
+        for image_data, target in test_loader:
+            image_data, target = image_data.to(device), target.to(device)
+            output = model(image_data)
+            test_loss += criterion(output, target)
+            pred = output.argmax(dim=1)
+            acc += torch.mean(torch.eq(pred, target).float()).item()
+            index += 1
+        test_loss /= index
+        acc /= index
+        print(f'第{epoch}轮--Average test_loss : {test_loss} -- Average Accuracy : {acc}')
+        return acc
 
 
 def prune_tools(args, model, train_loader, test_loader, criterion, optimizer, device):
@@ -116,8 +117,8 @@ def prune_tools(args, model, train_loader, test_loader, criterion, optimizer, de
     # 模型加速
     dummy_input = args.dummy_input.split(',')
     n, c, h, w = int(dummy_input[0][1:]), int(dummy_input[1]), int(dummy_input[2]), int(dummy_input[3][:-1])
-    m_speedup = ModelSpeedup(model, dummy_input=torch.randn(20, 3, 128, 128).to(device),
-                             masks_file=r'C:\Users\Administrator\Desktop\Pytorch-Image-Classifier-Collection\prune_model\prune_checkpoints\mask_model.pth')
+    m_speedup = ModelSpeedup(model, dummy_input=torch.randn(n, c, h, w).to(device),
+                             masks_file=os.path.join(prune_save_path, 'mask_model.pth'))
     m_speedup.speedup_model()
 
     # 微调模型
